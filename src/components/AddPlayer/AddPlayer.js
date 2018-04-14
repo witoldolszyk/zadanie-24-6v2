@@ -12,7 +12,7 @@ const AddPlayer = (props) => {
 
    return (
     <form className="AddPlayer" onSubmit={onSubmit}>
-           <input type="text" className="AddPlayer__input" ref={(node) => input = node} />
+           <input type="text" className="AddPlayer__input" ref={(node) => input = node} placeholder='Player name' />
            <input type="submit" className="AddPlayer__submit" value="Add" />
     </form>
    )

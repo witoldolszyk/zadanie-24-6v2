@@ -20,7 +20,7 @@ it("renders correct number of players", () => {
     ];
 
     const playerComponent = shallow(<PlayersList players={players} />);
-    console.log(playerComponent.debug());
+
 
     const expectedPlayersNumber = playerComponent.find(Player).length;
     expect(expectedPlayersNumber).toEqual(2);
@@ -45,4 +45,19 @@ it('onScoreUpdate is click', () => {
     onPlayerScoreChange(10);
 
     expect(mockedOnScoreUpdate).toBeCalledWith(0, 10);
+});
+
+it('should check argument', () => {
+    const player =[{
+        name: 'Andżej',
+        score: 0
+    }];
+
+    const mockedOnPlayerRemove = jest.fn();
+    const playerComponent = shallow(<PlayersList players={player} onPlayerRemove={mockedOnPlayerRemove} />);
+    const firstPlayer = playerComponent.find(Player).first();
+    const handlePlayerRemove = firstPlayer.prop('onPlayerRemove');
+    handlePlayerRemove('Andżej');
+
+    expect(mockedOnPlayerRemove).toBeCalledWith('Andżej');
 });
